@@ -1,0 +1,2 @@
+dronekit==2.9.2;python_version=="3.8"
+flask==3.0.3
