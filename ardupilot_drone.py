@@ -25,7 +25,7 @@ assert len(MAPS_API_KEY) == 39, "CAPS students: please make sure number 4 is add
 
 
 # domain name for the drone control website (and key for the tunnel to serve this website)
-WEBSITE_DOMAIN = "copter.ngrok.io"  # (set WEBSITE_DOMAIN = "", if you don't want to serve at public domain in Internet)
+WEBSITE_DOMAIN = "copter.ngrok.io"  # set WEBSITE_DOMAIN = "" if you don't want to serve at public domain in Internet
 NGROK_API_KEY = "2KcB1EBVKy4WTOTTKLW22gqR7DT_4VTarhtxzRo3HT85j45q"  # < students may need to add letter H to the end
 assert len(NGROK_API_KEY) == 49, "CAPS students: please make sure letter H is added to the end of the NGROK_API_KEY"
 
