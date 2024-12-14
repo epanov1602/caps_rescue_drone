@@ -14,8 +14,8 @@ FLIGHT_ALTITUDE = 30  # meters (drone will fly at this altitude)
 DELIVERY_ALTITUDE = 10  # meters (drone will descend to this altitude before lowering the cargo)
 MAX_DELIVERY_DISTANCE = 1000  # meters (to ensure that we obey line-of-sight rule in this demo)
 
-DRONE_CONNECTION_STRING = ""
-# DRONE_CONNECTION_STRING = "tcp:127.0.0.1:15000"  # if connecting to the drone using local MAVProxy on port 15000
+# DRONE_CONNECTION_STRING = ""
+DRONE_CONNECTION_STRING = "tcp:127.0.0.1:15000"  # if connecting to the drone using local MAVProxy on port 15000
 # DRONE_CONNECTION_STRING = "COM24"  # if connecting to the drone directly via USB radio at COM24 port
 
 
@@ -53,16 +53,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def home_page():
-    if vehicle is None:
-        return "Drone is not connected to this website"
-    if vehicle.armed:
-        return "Drone is already armed"
-    return """
-<pre>
-Drone is not armed
-(to request delivery, run same page with your delivery point at the end, like this: /go?point=40.737084,-74.026079)
-</pre>
-"""
+    replacements = {EXAMPLE_MAPS_API_KEY: MAPS_API_KEY}
+    maps_file_location = os.path.dirname(os.path.abspath(__file__))
+    return website_tools.serve_static_webpage(maps_file_location + '/map.html', replacements)
 
 
 @app.route('/go')
